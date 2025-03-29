@@ -8,7 +8,11 @@ const user = u.user;
 
 const speedDialItems = ref([{
     label: 'Request New Item',
-    icon: 'pi pi-pencil'
+    icon: 'ic:round-plus',
+    command: () => {}
+}, {
+    label: 'Anonymous Feedback',
+    icon: 'material-symbols:feedback-rounded',
 }])
 </script>
 
@@ -16,7 +20,7 @@ const speedDialItems = ref([{
     <!-- Dashboard Page -->
     <div>
         <!-- Dashboard Header -->
-        <div class="shadow flex flex-row justify-between px-2 py-4 rounded-sm text-xl">
+        <div class="shadow flex flex-row justify-between p-4 rounded-sm text-xl">
             <!-- title -->
             <div>
                 <span>Dashboard</span>
@@ -50,7 +54,12 @@ const speedDialItems = ref([{
             <SpeedDial :model="speedDialItems" direction="up" :transitionDelay="80" >
                 <template #button="{ toggleCallback }">
                     <Button v-tooltip="'Quick Actions'" outlined class="border rounded" @click="toggleCallback">
-
+                        <Icon name="radix-icons:cross-2" />
+                    </Button>
+                </template>
+                <template #item="{ item, toggleCallback }">
+                    <Button :v-tooltip="item.name" outlined class="flex items-center justify-center py-2 border rounded border-surface-200 dark:border-surface-700 cursor-pointer"  @click="toggleCallback">
+                        <Icon :name="item.icon" />
                     </Button>
                 </template>
             </SpeedDial>
