@@ -1,5 +1,4 @@
 /*.key
-
+.venv/
 private
-
 _temp
