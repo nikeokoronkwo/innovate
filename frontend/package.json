@@ -8,6 +8,7 @@
     "dev:net": "nuxt dev --port 3001 --host",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
+    "format": "prettier . --write",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -30,6 +31,8 @@
   },
   "packageManager": "pnpm@9.15.2+sha256.022309bb31359142b65bfa889e0406d2eebd5acfffca47e6944acf29d9d6a66b",
   "devDependencies": {
-    "@primevue/nuxt-module": "^4.3.3"
+    "@primevue/nuxt-module": "^4.3.3",
+    "prettier": "3.5.3",
+    "prettier-plugin-tailwindcss": "^0.6.11"
   }
 }

@@ -1,35 +1,35 @@
 <template>
-    <div class="flex flex-col">
-        <!-- Top Navbar -->
-        <header class="flex flex-row justify-between p-4">
-            <!-- Dashboard Title -->
-            <div></div>
-            <div>
-                <div></div>
-                <div>{{ userData.email }}</div>
-            </div>
-        </header>
+  <div class="flex flex-col">
+    <!-- Top Navbar -->
+    <header class="flex flex-row justify-between p-4">
+      <!-- Dashboard Title -->
+      <div></div>
+      <div>
+        <div></div>
+        <div>{{ userData.email }}</div>
+      </div>
+    </header>
 
-        <!-- TODO: Change this! -->
-        <main class="min-h-lvh">
-            <slot />
-        </main>
+    <!-- TODO: Change this! -->
+    <main class="min-h-lvh">
+      <slot />
+    </main>
 
-        <!-- Bottom Navbar-->
-        <footer>
-            <!-- Footer -->
-            <div>
-                <div>
-                    <span>DN</span>
-                </div>
-                <div class="grid grid-cols-3 grid-rows-3 gap-2 p-4 text-sm">
-                    <div>Help</div>
-                    <div>Contact</div>
-                    <div>Feedback</div>
-                </div>
-            </div>
-        </footer>
-    </div>
+    <!-- Bottom Navbar-->
+    <footer>
+      <!-- Footer -->
+      <div>
+        <div>
+          <span>DN</span>
+        </div>
+        <div class="grid grid-cols-3 grid-rows-3 gap-2 p-4 text-sm">
+          <div>Help</div>
+          <div>Contact</div>
+          <div>Feedback</div>
+        </div>
+      </div>
+    </footer>
+  </div>
 </template>
 
 <script setup lang="ts">

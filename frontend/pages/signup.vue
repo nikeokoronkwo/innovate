@@ -1,11 +1,7 @@
 <template>
-    <div>
-
-    </div>
+  <div></div>
 </template>
 
 <script setup lang="ts">
-async function signup() {
-
-}
+async function signup() {}
 </script>

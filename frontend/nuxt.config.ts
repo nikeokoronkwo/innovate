@@ -1,33 +1,31 @@
 import tailwindcss from "@tailwindcss/vite";
-import Nora from '@primeuix/themes/nora';
+import Nora from "@primeuix/themes/nora";
 
 export default defineNuxtConfig({
-  compatibilityDate: '2024-11-01',
+  compatibilityDate: "2024-11-01",
   devtools: { enabled: true },
 
-  css: ['~/assets/css/main.css'],
+  css: ["~/assets/css/main.css"],
 
   modules: [
-    '@nuxt/icon',
-    '@nuxt/test-utils',
-    '@nuxt/eslint',
-    '@nuxt/fonts',
-    '@nuxt/image',
-    '@primevue/nuxt-module',
-    'nuxt-auth-utils'
+    "@nuxt/icon",
+    "@nuxt/test-utils",
+    "@nuxt/eslint",
+    "@nuxt/fonts",
+    "@nuxt/image",
+    "@primevue/nuxt-module",
+    "nuxt-auth-utils",
   ],
 
   vite: {
-    plugins: [
-      tailwindcss()
-    ]
+    plugins: [tailwindcss()],
   },
 
   primevue: {
     options: {
       theme: {
-        preset: Nora
-      }
-    }
-  }
-})
+        preset: Nora,
+      },
+    },
+  },
+});
