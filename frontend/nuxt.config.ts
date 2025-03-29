@@ -8,6 +8,8 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@nuxt/eslint',
     '@nuxt/fonts',
-    '@nuxt/image'
+    '@nuxt/image',
+    '@primevue/nuxt-module',
+    'nuxt-auth-utils'
   ]
 })
