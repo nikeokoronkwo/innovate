@@ -4,8 +4,21 @@ services:
     build: frontend
     ports:
       - "3000:3000"
+    develop:
+      watch:
+        - action: rebuild
+          path: frontend
+          ignore:
+            - .output
+            - .nuxt
 
   backend:
     build: backend
     ports:
       - "8000:8000"
+    develop:
+      watch:
+        - action: sync
+          path: backend
+          target: /app
+    
