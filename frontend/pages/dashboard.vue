@@ -19,20 +19,7 @@ const speedDialItems = ref([{
 <template>
     <!-- Dashboard Page -->
     <div>
-        <!-- Dashboard Header -->
-        <div class="shadow flex flex-row justify-between p-4 rounded-sm text-xl">
-            <!-- title -->
-            <div>
-                <span>Dashboard</span>
-            </div>
-
-            <!-- actions -->
-            <div class="flex flex-row justify-between space-x-4">
-                <NuxtLink to="/items">Supplies</NuxtLink>
-                <NuxtLink to="/maintenance">Maintenance</NuxtLink>
-                <NuxtLink to="/suggestions">Suggestions</NuxtLink>
-            </div>
-        </div>
+        <DashboardHeader title="Dashboard" />
 
         <!-- Dashboard Body -->
         <div class="py-4">
