@@ -10,7 +10,8 @@
             </div>
         </header>
 
-        <main>
+        <!-- TODO: Change this! -->
+        <main class="min-h-lvh">
             <slot />
         </main>
 
@@ -33,9 +34,7 @@
 
 <script setup lang="ts">
 // the current user data
-const userData = {
-    firstName: 'Lady',
-    lastName: 'Gaga',
-    email: 'ladygaga@dn.com'
-};
+const u = useSampleData();
+
+const userData = u.user;
 </script>

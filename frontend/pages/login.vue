@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center justify-center space-y-4 py-auto">
+    <div class="flex flex-col items-center justify-center space-y-4 py-auto mt-auto mb-auto">
         <div>Login</div>
         <div class="flex flex-col items-center justify-center">
             <Form v-slot="$form" :initialValues @submit="onFormSubmit" class="flex flex-col space-y-5" >

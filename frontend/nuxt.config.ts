@@ -1,5 +1,5 @@
 import tailwindcss from "@tailwindcss/vite";
-import Aura from '@primeuix/themes/aura';
+import Nora from '@primeuix/themes/nora';
 
 export default defineNuxtConfig({
   compatibilityDate: '2024-11-01',
@@ -26,7 +26,7 @@ export default defineNuxtConfig({
   primevue: {
     options: {
       theme: {
-        preset: Aura
+        preset: Nora
       }
     }
   }
