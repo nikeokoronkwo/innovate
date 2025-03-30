@@ -4,17 +4,27 @@ from rest_framework import status
 from rest_framework.permissions import AllowAny
 from .serializer import FeedBackRequestSerializer
 from django.contrib.auth import authenticate
+from rest_framework_simplejwt.tokens import RefreshToken
 
 class AuthView(APIView):
-    permission_classes = [AllowAny]
+    permission_classes = [AllowAny]  
 
     def post(self, request):
-        email = request.data.get('email')
+        username = request.data.get('username')
         password = request.data.get('password')
-        user = authenticate(email = email, password = password)
 
-        if email == 'bright.andohh@gmail.com' and password == '12345':
-            return Response({'message': 'Login successful', 'email': email, 'firstname': user.first_name, 'lastname': user.last_name}, status=status.HTTP_200_OK)
+        user = authenticate(request, username=username, password=password)
+
+        if user is not None:
+            refresh = RefreshToken.for_user(user)
+            return Response({
+                'message': 'Login successful',
+                'email': user.email,
+                'firstname': user.first_name,
+                'lastname': user.last_name,
+                'access_token': str(refresh.access_token),
+                'refresh_token': str(refresh),              
+            }, status=status.HTTP_200_OK)
         else:
             return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
         
