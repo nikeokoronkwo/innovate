@@ -6,4 +6,6 @@ RUN corepack enable
 COPY . /app
 WORKDIR /app
 
-CMD [ "pnpm", "dev", "--host" ]
+RUN pnpm install
+
+CMD [ "pnpm", "dev:docker", "--host" ]

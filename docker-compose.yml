@@ -15,13 +15,6 @@ services:
     build: frontend
     ports:
       - "3000:3000"
-    develop:
-      watch:
-        - action: rebuild
-          path: frontend
-          ignore:
-            - .output
-            - .nuxt
     
 
   backend:
@@ -42,9 +35,4 @@ services:
       DATABASE_PORT: ${DATABASE_PORT}
     env_file:
       - .env
-    develop:
-      watch:
-        - action: sync
-          path: backend
-          target: /app
     
