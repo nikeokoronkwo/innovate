@@ -14,6 +14,15 @@ export default () => {
       //     qty: 10
       // }
     ],
-    feedback: [],
+    maintenance: [
+      // {
+      //   status: 'pending', // 'waiting', 'idle', 'pending', 'fail', 'success'
+      //   title: 'Broken Chair',
+      //   info: {
+      //     description: '',
+      //     // picture // TODO:
+      //   }
+      // }
+    ],
   };
 };

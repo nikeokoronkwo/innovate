@@ -1,9 +1,68 @@
+<script setup lang="ts">
+// the current user data
+const u = useSampleData();
+
+const userData = u.user;
+const isOpen = ref(false);
+const { user, clear: clearSession } = useUserSession();
+
+const dropDownItems = ref([
+  {
+    name: "Logout",
+    action: async () => {
+      console.log("weou");
+      await clearSession();
+      await navigateTo("/login");
+    },
+  },
+]);
+
+const items = ref([
+  {
+    label: "Home",
+    icon: "pi pi-home",
+  },
+  {
+    label: "Supplies",
+    // icon: "pi pi-search",
+    // badge: 3, // TODO: API Reqs
+    items: [
+      {
+        label: "View",
+        icon: "pi pi-bolt",
+        shortcut: "⌘+S",
+      },
+      {
+        label: "Request",
+        icon: "pi pi-server",
+        shortcut: "⌘+B",
+      },
+    ],
+  },
+  {
+    label: "Maintenance",
+    items: [
+      {
+        label: "View",
+        icon: "pi pi-bolt",
+        shortcut: "⌘+S",
+      },
+      {
+        label: "Request",
+        icon: "pi pi-server",
+        shortcut: "⌘+B",
+      },
+    ],
+  },
+]);
+</script>
+
 <template>
   <div class="flex flex-col">
     <!-- Top Navbar -->
-    <header class="flex flex-row justify-between p-4">
+    <header class="flex flex-row items-center justify-between p-4">
       <!-- Dashboard Title -->
-      <div>DN</div>
+      <!-- <div @click="navigateTo('/dashboard')" class="text-2xl">DN</div>
       <Dropper :items="dropDownItems">
         <div class="flex flex-row items-center">
           <Avatar
@@ -14,7 +73,25 @@
           />
           <div class="text-xl">{{ userData.email }}</div>
         </div>
-      </Dropper>
+      </Dropper> -->
+      <Menubar :model="items" class="w-full">
+        <template #start>
+          <div @click="navigateTo('/dashboard')" class="text-2xl">DN</div>
+        </template>
+        <template #end>
+          <Dropper :items="dropDownItems">
+            <div class="flex flex-row items-center">
+              <Avatar
+                :label="userData.firstName[0]"
+                class="mr-2"
+                size="large"
+                shape="circle"
+              />
+              <div class="text-xl">{{ userData.email }}</div>
+            </div>
+          </Dropper>
+        </template>
+      </Menubar>
       <!-- <div class="relative inline-block text-left" @mouseleave="isOpen = false">
         <button
           class="bg-space-cadet hover:bg-space-cadet z-10 rounded-lg px-4 py-2 text-white focus:outline-none"
@@ -62,22 +139,9 @@
   </div>
 </template>
 
-<script setup lang="ts">
-// the current user data
-const u = useSampleData();
 
-const userData = u.user;
-const isOpen = ref(false);
-const { user, clear: clearSession } = useUserSession();
-
-const dropDownItems = ref([
-  {
-    name: "Logout",
-    action: async () => {
-      console.log('weou');
-      await clearSession();
-      await navigateTo("/login");
-    },
-  },
-]);
-</script>
+<style lang="css" scoped>
+.p-menubar {
+  border: none;
+}
+</style>

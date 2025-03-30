@@ -1,4 +1,8 @@
 <script setup lang="ts">
+definePageMeta({
+  layout: "dashboard",
+});
+
 async function requestSupply(supplyRequest) {
   await navigateTo("/dashboard");
 }

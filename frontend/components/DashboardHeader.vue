@@ -6,17 +6,12 @@ const props = defineProps({
 
 <template>
   <!-- Dashboard Header -->
-  <div class="flex flex-row justify-between rounded-sm p-4 text-xl shadow">
+  <div
+    class="bg-space-cadet flex flex-row justify-between p-4 text-xl text-white shadow"
+  >
     <!-- title -->
     <div>
-      <span>{{ props.title }}</span>
-    </div>
-
-    <!-- actions -->
-    <div class="flex flex-row justify-between space-x-4">
-      <NuxtLink to="/supplies">Supplies</NuxtLink>
-      <NuxtLink to="/maintenance">Maintenance</NuxtLink>
-      <NuxtLink to="/suggestions">Suggestions</NuxtLink>
+      <span class="font-bold">{{ props.title }}</span>
     </div>
   </div>
 </template>
