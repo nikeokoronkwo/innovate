@@ -55,6 +55,10 @@ const items = ref([
       },
     ],
   },
+  {
+    label: "Support",
+    command: () => navigateTo("/suggestions"),
+  },
 ]);
 </script>
 
@@ -63,18 +67,6 @@ const items = ref([
     <!-- Top Navbar -->
     <header class="flex flex-row items-center justify-between p-4">
       <!-- Dashboard Title -->
-      <!-- <div @click="navigateTo('/dashboard')" class="text-2xl">DN</div>
-      <Dropper :items="dropDownItems">
-        <div class="flex flex-row items-center">
-          <Avatar
-            :label="userData.firstName[0]"
-            class="mr-2"
-            size="large"
-            shape="circle"
-          />
-          <div class="text-xl">{{ userData.email }}</div>
-        </div>
-      </Dropper> -->
       <Menubar :model="items" class="w-full">
         <template #start>
           <div @click="navigateTo('/dashboard')" class="text-2xl">DN</div>

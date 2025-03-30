@@ -1,3 +1,7 @@
 <template>
-  <div></div>
+  <div>
+    <Panel>
+      
+    </Panel>
+  </div>
 </template>

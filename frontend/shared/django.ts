@@ -1,7 +1,7 @@
 const config = useRuntimeConfig();
 
-export const djangoUrl = config.djangoUrl;
-export const djangoActive = config.djangoActive !== 0;
+export const djangoUrl = config.public.djangoUrl;
+export const djangoActive = config.public.djangoActive !== 0;
 
 export const $django = $fetch.create({
   baseURL: djangoUrl,
