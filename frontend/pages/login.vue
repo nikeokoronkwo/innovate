@@ -69,15 +69,15 @@ const onFormSubmit = ({ valid, values }: FormSubmitEvent<LoginInformation>) => {
 async function login(details: LoginInformation) {
   // run request
   try {
-    const user = await $fetch("/api/auth", {
-      method: "POST",
-      body: JSON.stringify(details),
-    });
+    // const user = await $fetch("/api/auth", {
+    //   method: "POST",
+    //   body: JSON.stringify(details),
+    // });
 
-    if (user) {
-      await refreshSession();
+    // if (user) {
+    //   await refreshSession();
       return await navigateTo("/dashboard");
-    }
+    // }
   } catch (error) {
     console.error(error);
   }

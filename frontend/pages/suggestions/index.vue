@@ -100,12 +100,6 @@ const onSubmit = async ({ valid, values }: FormSubmitEvent) => {
               severity="secondary"
               label="Submit Feedback"
             />
-
-            <DevOnly>
-              <Fieldset legend="Form States" class="h-80 overflow-auto p-5">
-                <pre class="whitespace-pre-wrap">{{ $form }}</pre>
-              </Fieldset>
-            </DevOnly>
           </Form>
         </template>
       </Card>

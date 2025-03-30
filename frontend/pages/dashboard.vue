@@ -26,13 +26,14 @@ const tasks1 = ref([
     id: 1,
     title: "Coca Cola",
     quantity: 2,
-    description: "Tracking info A",
+    description: "Coca Cola Canned Drink",
     status: "Pending",
   },
   {
     id: 2,
-    title: "Task B",
-    description: "Tracking info B",
+    title: "Pens",
+    quantity: 3,
+    description: "Writing Pens",
     status: "Completed",
   },
 ]);
@@ -40,16 +41,10 @@ const tasks1 = ref([
 const tasks2 = ref([
   {
     id: 3,
-    title: "Task X",
-    detail: "Different tracking info X",
+    title: "Broken Chair",
+    detail: "Tracking maintenance of broken chair",
     status: "In Progress",
-  },
-  {
-    id: 4,
-    title: "Task Y",
-    detail: "Different tracking info Y",
-    status: "Pending",
-  },
+  }
 ]);
 
 const statusClasses = (status) => {

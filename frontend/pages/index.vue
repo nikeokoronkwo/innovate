@@ -8,4 +8,6 @@
 definePageMeta({
   middleware: "auth",
 });
+
+onMounted(() => navigateTo('/login'));
 </script>
