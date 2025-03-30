@@ -15,6 +15,10 @@ const initialValues = ref({
   quantity: undefined,
   message: "",
 });
+
+const onSubmit = ({ valid, values }) => {
+  console.log(values);
+};
 </script>
 
 <template>
@@ -25,17 +29,19 @@ const initialValues = ref({
       <Form
         v-slot="$form"
         :initial-values="initialValues"
-        class="flex flex-col items-center justify-center p-4"
+        class="flex w-full flex-col items-center justify-center p-4"
+        @submit="onSubmit"
       >
-        <div class="space-y-3">
+        <div class="space-y-3 w-full">
           <!-- Item Type Request (load when retrieving) -->
           <Select
             name="item.name"
             editable
+            fluid
             showClear
             :options="supplies"
             optionLabel="name"
-            placeholder="Select an Item to Request"
+            placeholder="Select an Item"
           />
           <!-- IF Custom, type custom -->
 
@@ -56,9 +62,10 @@ const initialValues = ref({
             placeholder="Message (optional)"
             rows="5"
             cols="30"
+            fluid
           />
         </div>
-        <div class="flex flex-row justify-center space-x-3">
+        <div class="flex flex-row justify-center space-x-3 py-2">
           <div class="flex items-center gap-2">
             <Checkbox inputId="next" value="Request Another Item" />
             <label for="next">Request Another Item</label>

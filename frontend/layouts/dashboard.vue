@@ -5,7 +5,7 @@
       <!-- Dashboard Title -->
       <div></div>
       <div>
-        <div></div>
+        <Avatar :label="userData.firstName[0]" class="mr-2" size="xlarge" />
         <div>{{ userData.email }}</div>
       </div>
     </header>

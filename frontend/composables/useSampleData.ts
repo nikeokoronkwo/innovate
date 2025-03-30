@@ -14,5 +14,6 @@ export default () => {
       //     qty: 10
       // }
     ],
+    feedback: [],
   };
 };
