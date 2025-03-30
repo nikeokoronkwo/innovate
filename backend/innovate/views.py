@@ -1,21 +1,19 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.permissions import AllowAny
-from .serializer import FeedBackRequestSerializer
+from rest_framework.permissions import AllowAny, IsAuthenticated
+from .serializer import FeedBackRequestSerializer, SupplyRequestSerializer
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
-# from django.http import JsonResponse
-# from . producer import send
-
+from rest_framework import viewsets
+from . models import FeedBackRequest
 
 class AuthView(APIView):
-    permission_classes = [AllowAny]  
+    permission_classes = [AllowAny]
 
     def post(self, request):
         username = request.data.get('username')
         password = request.data.get('password')
-
         user = authenticate(request, username=username, password=password)
 
         if user is not None:
@@ -26,19 +24,27 @@ class AuthView(APIView):
                 'firstname': user.first_name,
                 'lastname': user.last_name,
                 'access_token': str(refresh.access_token),
-                'refresh_token': str(refresh),              
+                'refresh_token': str(refresh),
             }, status=status.HTTP_200_OK)
-        else:
-            return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
-        
-class FeedbackView(APIView):
+        return Response({'error': 'Invalid Credentials'}, status=status.HTTP_400_BAD_REQUEST)
+
+class FeedbackViewSet(viewsets.ModelViewSet):
+    queryset = FeedBackRequest.objects.all().order_by('-created_at')
+    serializer_class = FeedBackRequestSerializer
+    permission_classes = [IsAuthenticated]
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)
+
+class SupplyRequestView(APIView):
+    permission_classes = [IsAuthenticated]
+
     def post(self, request):
-        serializer = FeedBackRequestSerializer(data=request.data)
+        serializer = SupplyRequestSerializer(data=request.data)
         if serializer.is_valid():
-            serializer.save()
+            serializer.save(user=self.request.user)
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-    
-#def submit_request(request):
-#     send("task_queue", "New request")
-#     return JsonResponse({"message": "Request sent to RabbitMQ"})
