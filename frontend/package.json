@@ -21,6 +21,7 @@
     "@primeuix/themes": "^1.0.0",
     "@primevue/forms": "^4.3.3",
     "@tailwindcss/vite": "^4.0.17",
+    "chart.js": "^4.4.8",
     "eslint": "^9.0.0",
     "nuxt": "^3.16.1",
     "nuxt-auth-utils": "0.5.17",

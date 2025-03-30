@@ -17,6 +17,8 @@ const dropDownItems = ref([
   },
 ]);
 
+const selectedMenuOption = ref(null);
+
 const items = ref([
   {
     label: "Home",
@@ -65,49 +67,36 @@ const items = ref([
 <template>
   <div class="flex flex-col">
     <!-- Top Navbar -->
-    <header class="flex flex-row items-center justify-between p-4">
-      <!-- Dashboard Title -->
-      <Menubar :model="items" class="w-full">
+    <header
+      class="bg-gray-100 p-4 text-gray-800 shadow-md dark:bg-gray-900 dark:text-white"
+    >
+      <Menubar :model="items" class="flex w-full items-center">
+        <!-- Left: Dashboard Title -->
         <template #start>
-          <div @click="navigateTo('/dashboard')" class="text-2xl">DN</div>
+          <div
+            @click="navigateTo('/dashboard')"
+            class="text-primary cursor-pointer text-2xl font-bold transition hover:opacity-80"
+          >
+            DN
+          </div>
         </template>
+
+        <!-- Right: User Avatar & Dropdown -->
         <template #end>
-          <Dropper :items="dropDownItems">
-            <div class="flex flex-row items-center">
+          <div class="flex items-center space-x-4">
+            <div class="flex cursor-pointer items-center space-x-2">
               <Avatar
                 :label="userData.firstName[0]"
                 class="mr-2"
                 size="large"
                 shape="circle"
               />
-              <div class="text-xl">{{ userData.email }}</div>
+              <span class="text-sm">{{ userData.email }}</span>
+              <i class="pi pi-chevron-down text-sm"></i>
             </div>
-          </Dropper>
+          </div>
         </template>
       </Menubar>
-      <!-- <div class="relative inline-block text-left" @mouseleave="isOpen = false">
-        <button
-          class="bg-space-cadet hover:bg-space-cadet z-10 rounded-lg px-4 py-2 text-white focus:outline-none"
-          @click="isOpen = !isOpen"
-          @mouseover="isOpen = true"
-        >
-          Dropdown
-        </button>
-        <div
-          v-if="isOpen"
-          class="relative left-0 -z-20 mt-2 w-full rounded-lg border border-gray-300 bg-white shadow-lg"
-        >
-          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >Item 1</a
-          >
-          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >Item 2</a
-          >
-          <a href="#" class="block px-4 py-2 text-gray-700 hover:bg-gray-100"
-            >Item 3</a
-          >
-        </div>
-      </div> -->
     </header>
 
     <!-- TODO: Change this! -->
@@ -116,17 +105,46 @@ const items = ref([
     </main>
 
     <!-- Bottom Navbar-->
-    <footer>
-      <!-- Footer -->
-      <div>
-        <div>
-          <span>DN</span>
+    <footer
+      class="bg-gray-100 p-6 text-gray-700 dark:bg-gray-900 dark:text-gray-300"
+    >
+      <div
+        class="container mx-auto flex flex-col items-center justify-between md:flex-row"
+      >
+        <!-- Logo / Branding -->
+        <div class="flex items-center space-x-2">
+          <span class="text-primary text-2xl font-bold">DN</span>
         </div>
-        <div class="grid grid-cols-3 grid-rows-3 gap-2 p-4 text-sm">
-          <div>Help</div>
-          <div>Contact</div>
-          <div>Feedback</div>
+
+        <!-- Navigation Links -->
+        <div class="flex flex-wrap justify-center space-x-6 text-sm">
+          <a href="#" class="hover:text-primary transition">Help</a>
+          <a href="#" class="hover:text-primary transition">Contact</a>
+          <a href="#" class="hover:text-primary transition">Feedback</a>
+          <a href="#" class="hover:text-primary transition">Privacy Policy</a>
+          <a href="#" class="hover:text-primary transition">Terms of Service</a>
         </div>
+
+        <!-- Social Media Icons -->
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-primary transition"
+            ><i class="pi pi-facebook text-lg"></i
+          ></a>
+          <a href="#" class="hover:text-primary transition"
+            ><i class="pi pi-twitter text-lg"></i
+          ></a>
+          <a href="#" class="hover:text-primary transition"
+            ><i class="pi pi-instagram text-lg"></i
+          ></a>
+          <a href="#" class="hover:text-primary transition"
+            ><i class="pi pi-linkedin text-lg"></i
+          ></a>
+        </div>
+      </div>
+
+      <!-- Copyright Section -->
+      <div class="mt-4 text-center text-xs text-gray-500">
+        &copy; {{ new Date().getFullYear() }} DN. All rights reserved.
       </div>
     </footer>
   </div>
