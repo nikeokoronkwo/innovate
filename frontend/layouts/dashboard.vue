@@ -4,9 +4,9 @@
     <header class="flex flex-row justify-between p-4">
       <!-- Dashboard Title -->
       <div></div>
-      <div>
-        <Avatar :label="userData.firstName[0]" class="mr-2" size="xlarge" />
-        <div>{{ userData.email }}</div>
+      <div class="flex flex-row items-center">
+        <Avatar :label="userData.firstName[0]" class="mr-2" size="large" shape="circle" />
+        <div class="text-xl">{{ userData.email }}</div>
       </div>
     </header>
 
