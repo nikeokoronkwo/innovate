@@ -1,11 +1,11 @@
 <template>
-  <div class="flex flex-col items-center justify-center align-middle min-h-lvh">
-    <span class="font-bold text-3xl">Redirecting...</span>
+  <div class="flex min-h-lvh flex-col items-center justify-center align-middle">
+    <span class="text-3xl font-bold">Redirecting...</span>
   </div>
 </template>
 
 <script setup lang="ts">
 definePageMeta({
-  middleware: 'auth'
+  middleware: "auth",
 });
 </script>

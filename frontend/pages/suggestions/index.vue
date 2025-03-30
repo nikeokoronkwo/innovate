@@ -1,9 +1,11 @@
 <script setup lang="ts">
-import { feedbackTags } from "~/shared/tags";
-
 definePageMeta({
   layout: "dashboard",
 });
+
+import type { FormSubmitEvent } from "@primevue/forms/form";
+import { $django, djangoActive, djangoUrl } from "~/shared/django";
+import { feedbackTags } from "~/shared/tags";
 
 // The kinds of tags available
 const tags = ref(feedbackTags);
@@ -14,10 +16,17 @@ const initialValues = ref({
 });
 
 // on form submit
-const onSubmit = ({ valid, values }) => {
+const onSubmit = async ({ valid, values }: FormSubmitEvent) => {
   // submit
   if (valid) {
+    console.log(djangoUrl, djangoActive);
     // make request
+    const resp = await $django("/api/feedback/", {
+      method: "POST",
+      body: values,
+    });
+
+    console.log(resp);
   }
 };
 </script>
@@ -32,6 +41,7 @@ const onSubmit = ({ valid, values }) => {
             v-slot="$form"
             :initial-values="initialValues"
             class="flex flex-col items-center justify-start gap-4 p-4"
+            @submit="onSubmit"
           >
             <!-- Feedback Kind: Tags -->
             <div>
@@ -49,9 +59,9 @@ const onSubmit = ({ valid, values }) => {
                 :maxSelectedLabels="3"
                 placeholder="Select Feedback Tag(s)"
                 fluid
-                class="min-w-xl"
+                class="min-w-xl py-2"
               />
-              <div class="space-x-2">
+              <div class="space-x-2 py-3">
                 <Tag
                   v-for="tag in $form.tags?.value ?? []"
                   :key="tag"
