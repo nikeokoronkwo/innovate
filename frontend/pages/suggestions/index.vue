@@ -5,8 +5,6 @@ definePageMeta({
   layout: "dashboard",
 });
 
-const { maintenance: feedback } = useSampleData();
-
 // The kinds of tags available
 const tags = ref(feedbackTags);
 
@@ -20,7 +18,6 @@ const onSubmit = ({ valid, values }) => {
   // submit
   if (valid) {
     // make request
-    
   }
 };
 </script>

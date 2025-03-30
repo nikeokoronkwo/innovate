@@ -21,6 +21,7 @@ const items = ref([
   {
     label: "Home",
     icon: "pi pi-home",
+    command: () => navigateTo("/dashboard"),
   },
   {
     label: "Supplies",
@@ -30,12 +31,12 @@ const items = ref([
       {
         label: "View",
         icon: "pi pi-bolt",
-        shortcut: "⌘+S",
+        command: () => navigateTo("/supplies"),
       },
       {
         label: "Request",
         icon: "pi pi-server",
-        shortcut: "⌘+B",
+        command: () => navigateTo("/supplies/request"),
       },
     ],
   },
@@ -45,12 +46,12 @@ const items = ref([
       {
         label: "View",
         icon: "pi pi-bolt",
-        shortcut: "⌘+S",
+        command: () => navigateTo("/maintenance"),
       },
       {
         label: "Request",
         icon: "pi pi-server",
-        shortcut: "⌘+B",
+        command: () => navigateTo("/maintenance/request"),
       },
     ],
   },
@@ -138,7 +139,6 @@ const items = ref([
     </footer>
   </div>
 </template>
-
 
 <style lang="css" scoped>
 .p-menubar {
