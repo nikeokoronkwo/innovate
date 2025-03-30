@@ -24,3 +24,8 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)
     phone_number = models.CharField(max_length=15,validators=[RegexValidator(r'^\d{10}$', 'Enter a valid 10-digit phone number.')])
     location = models.CharField(max_length=255)
+
+class FeedBackRequest(models.Model):
+    tags = models.JSONField(default=list)
+    html_text = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
