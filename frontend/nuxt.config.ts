@@ -28,4 +28,11 @@ export default defineNuxtConfig({
       },
     },
   },
+
+  runtimeConfig: {
+    public: {
+      djangoUrl: "",
+      djangoActive: 0,
+    },
+  },
 });

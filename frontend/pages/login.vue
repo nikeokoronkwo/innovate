@@ -7,17 +7,18 @@
       <Form
         v-slot="$form"
         :initialValues
+        :resolver="resolver"
         @submit="onFormSubmit"
         class="flex flex-col space-y-5"
       >
         <div class="flex flex-col gap-1">
           <InputText name="email" type="text" placeholder="Email" fluid />
           <Message
-            v-if="$form.username?.invalid"
+            v-if="$form.email?.invalid"
             severity="error"
             size="small"
             variant="simple"
-            >{{ $form.username.error?.message }}</Message
+            >{{ $form.email.error?.message }}</Message
           >
         </div>
         <div class="flex flex-col gap-1">
@@ -29,11 +30,11 @@
             fluid
           />
           <Message
-            v-if="$form.email?.invalid"
+            v-if="$form.password?.invalid"
             severity="error"
             size="small"
             variant="simple"
-            >{{ $form.email.error?.message }}</Message
+            >{{ $form.password.error?.message }}</Message
           >
         </div>
         <Button type="submit" severity="secondary" label="Submit" />
@@ -44,39 +45,38 @@
 
 <script setup lang="ts">
 import type { FormSubmitEvent } from "@primevue/forms/form";
+import { zodResolver } from "@primevue/forms/resolvers/zod";
+import { loginValidator, type LoginInformation } from "~/shared/user";
 
-const initialValues = reactive<LoginDetails>({
+const initialValues = reactive<LoginInformation>({
   email: "",
   password: "",
 });
 
 const toast = useToast();
 
-const resolver = ({ values }) => {
-  const errors = {};
+const resolver = ref(zodResolver(loginValidator));
 
-  if (!values.username) {
-    errors.username = [{ message: "Username is required." }];
-  }
-
-  return {
-    values, // (Optional) Used to pass current form values to submit event.
-    errors,
-  };
-};
-
-const onFormSubmit = ({ valid, values }: FormSubmitEvent<LoginDetails>) => {
+const onFormSubmit = ({ valid, values }: FormSubmitEvent<LoginInformation>) => {
   if (valid) {
-    toast.add({
-      severity: "success",
-      summary: "Form is submitted.",
-      life: 3000,
-    });
     login(values);
   }
 };
 
-async function login(details: LoginDetails) {
-  return await navigateTo("/dashboard");
+async function login(details: LoginInformation) {
+  // run request
+  try {
+    const user = await $fetch("/api/auth", {
+      method: "POST",
+      body: JSON.stringify(details),
+    });
+
+    if (user) {
+      await refreshSession();
+      return await navigateTo("/dashboard");
+    }
+  } catch (error) {
+    console.error(error);
+  }
 }
 </script>

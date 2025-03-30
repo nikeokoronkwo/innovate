@@ -14,7 +14,7 @@ services:
   app:
     build: 
       context: frontend
-      dockerfile: dev.Dockerfile
+      dockerfile: docker/dev.Dockerfile
     ports:
       - "3000:3000"
     develop:

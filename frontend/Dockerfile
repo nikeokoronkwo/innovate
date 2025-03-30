@@ -11,5 +11,8 @@ RUN pnpm run build
 
 FROM base
 COPY --from=build /app/.output /app/.output
+
+ENV NUXT_DJANGO_ACTIVE=1
+
 EXPOSE 3000
-CMD [ "node", ".output/server/index.mjs" ]
+CMD [ "node", "--env-file=.env", ".output/server/index.mjs" ]

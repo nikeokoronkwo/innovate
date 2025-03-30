@@ -32,7 +32,7 @@ const onSubmit = ({ valid, values }) => {
         class="flex w-full flex-col items-center justify-center p-4"
         @submit="onSubmit"
       >
-        <div class="space-y-3 w-full">
+        <div class="w-full space-y-3">
           <!-- Item Type Request (load when retrieving) -->
           <Select
             name="item.name"
