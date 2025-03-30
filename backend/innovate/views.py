@@ -19,7 +19,7 @@ class AuthView(APIView):
             refresh = RefreshToken.for_user(user)
             return Response({
                 'message': 'Login successful',
-                'email': user.email,
+                'email': user.username,
                 'firstname': user.first_name,
                 'lastname': user.last_name,
                 'access_token': str(refresh.access_token),
