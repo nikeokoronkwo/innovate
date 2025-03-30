@@ -2,3 +2,5 @@
 .venv/
 private
 _temp
+
+**/node_modules
