@@ -5,6 +5,9 @@ from rest_framework.permissions import AllowAny
 from .serializer import FeedBackRequestSerializer
 from django.contrib.auth import authenticate
 from rest_framework_simplejwt.tokens import RefreshToken
+# from django.http import JsonResponse
+# from . producer import send
+
 
 class AuthView(APIView):
     permission_classes = [AllowAny]  
@@ -35,3 +38,7 @@ class FeedbackView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
+#def submit_request(request):
+#     send("task_queue", "New request")
+#     return JsonResponse({"message": "Request sent to RabbitMQ"})
