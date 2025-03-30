@@ -8,13 +8,16 @@ const user = u.user;
 
 const speedDialItems = ref([
   {
-    label: "Request New Item",
-    icon: "ic:round-plus",
-    command: () => {},
+    name: "Request New Item",
+    icon: "mdi:file-plus",
+    description: "Create a new file",
+    action: () => console.log("New File"),
   },
   {
-    label: "Anonymous Feedback",
-    icon: "material-symbols:feedback-rounded",
+    name: "Report Feedback",
+    icon: "mdi:upload",
+    description: "Upload a file",
+    action: () => console.log("Upload File"),
   },
 ]);
 
@@ -110,9 +113,11 @@ const statusClasses = (status) => {
                     </Button>
                   </template>
                   <template #content>
-                    <p class="text-sm text-gray-600">x<span class="font-semibold">{{
+                    <p class="text-sm text-gray-600">
+                      x<span class="font-semibold">{{
                         task.quantity ?? 0
-                      }}</span></p>
+                      }}</span>
+                    </p>
                     <span
                       :class="statusClasses(task.status)"
                       class="mt-2 inline-block rounded-full px-2 py-1 text-xs font-semibold"
@@ -151,24 +156,30 @@ const statusClasses = (status) => {
     <!-- TODO: Quick Actions At Bottom -->
     <div class="fixed right-10 bottom-10">
       <SpeedDial :model="speedDialItems" direction="up" :transitionDelay="80">
+        <!-- Main Button to Open/Close SpeedDial -->
         <template #button="{ toggleCallback }">
           <Button
-            v-tooltip="'Quick Actions'"
+            v-tooltip.left="'Quick Actions'"
             outlined
-            class="rounded border"
+            class="rounded-full border p-2"
             @click="toggleCallback"
           >
-            <Icon name="radix-icons:cross-2" />
+            <Icon name="radix-icons:cross-2" class="text-lg" />
           </Button>
         </template>
+
+        <!-- Individual Quick Action Buttons -->
         <template #item="{ item, toggleCallback }">
           <Button
-            :v-tooltip="item.name"
+            v-tooltip.left="item.description"
             outlined
-            class="border-surface-200 dark:border-surface-700 flex cursor-pointer items-center justify-center rounded border py-2"
-            @click="toggleCallback"
+            class="border-surface-200 dark:border-surface-700 flex items-center justify-center rounded-full border p-2"
+            @click="
+              item.action;
+              toggleCallback;
+            "
           >
-            <Icon :name="item.icon" />
+            <Icon :name="item.icon" class="text-xl" />
           </Button>
         </template>
       </SpeedDial>
